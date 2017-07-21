@@ -5,8 +5,6 @@ class Output extends React.Component {
   render() {
     const { frequency } = this.props
 
-    // console.log(frequency)
-
     if (!frequency) {
       return null
     }

@@ -7,6 +7,7 @@ class Input extends React.Component {
     super()
 
     this.computeFrequency = this.computeFrequency.bind(this)
+    this.handleFileOnload = this.handleFileOnload.bind(this)
   }
 
   render() {
@@ -31,17 +32,19 @@ class Input extends React.Component {
     const { onUpdateFrequency } = this.props
 
     const file = e.target.files[0]
-    // console.log(file)
 
     const reader = new FileReader()
-    reader.onload = function(e) {
-      let result = e.target.result.split('\n')
-      // console.log(result)
-      result = this.computeFrequency(result)
-      // console.log(result)
-      onUpdateFrequency(result)
-    }.bind(this)
+    reader.onload = this.handleFileOnload
     reader.readAsText(file, 'UTF-8')
+  }
+
+  handleFileOnload(e) {
+    const { onUpdateFrequency } = this.props
+
+    let result = e.target.result.split('\n')
+
+    result = this.computeFrequency(result)
+    onUpdateFrequency(result)
   }
 
   computeFrequency(data) {
@@ -65,7 +68,6 @@ class Input extends React.Component {
       ['desc', 'asc']
     )
 
-    // console.log(sortedResult)
     return sortedResult
   }
 }
