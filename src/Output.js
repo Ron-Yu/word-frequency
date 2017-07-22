@@ -52,11 +52,16 @@ const Row = styled.section`
 
 const DataRow = Row.extend`
   color: black;
+  transition: all 0.3s;
   &:nth-child(even) {
     background-color: #B2DFDB
   }
   &:nth-child(odd) {
     background-color: #E0F2F1
+  }
+  &:hover {
+    background-color: #00897B;
+    color: white;
   }
 `
 
