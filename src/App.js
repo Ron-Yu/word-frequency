@@ -34,16 +34,17 @@ class App extends React.Component {
 }
 
 const Container = styled.section`
-  width: 800px;
-  display: flex;
+  width: 400px;
   margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 `
 
 const ContainerItem = styled.section`
-  flex: 0 0 50%;
+  flex: 0 0 100%;
   padding: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
 `
 

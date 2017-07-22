@@ -5,6 +5,9 @@ import { orderBy } from 'lodash'
 class Input extends React.Component {
   constructor() {
     super()
+    this.state = {
+      fileName: ''
+    }
 
     this.computeFrequency = this.computeFrequency.bind(this)
     this.handleFileOnload = this.handleFileOnload.bind(this)
@@ -24,6 +27,8 @@ class Input extends React.Component {
         <Label for="uploadfile" onClick={() => this.input.click()}>
           Choose your file
         </Label>
+        <FileName>{this.state.fileName}</FileName>
+
       </section>
     )
   }
@@ -32,6 +37,11 @@ class Input extends React.Component {
     const { onUpdateFrequency } = this.props
 
     const file = e.target.files[0]
+    console.log('file', file)
+
+    this.setState({
+      fileName: file.name
+    })
 
     const reader = new FileReader()
     reader.onload = this.handleFileOnload
@@ -72,11 +82,18 @@ class Input extends React.Component {
   }
 }
 
+const FileName = styled.p`
+  display: inline-block;
+  margin: 0;
+  padding: 10px
+`
+
 const Label = styled.label`
   display: inline-block;
   background-color: #009688;
   padding: 10px;
   color: white;
+  cursor: pointer;
 `
 
 export default Input

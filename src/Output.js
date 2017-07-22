@@ -12,8 +12,8 @@ class Output extends React.Component {
     return (
       <Container>
         <Row>
-          <Column><Title>vocabulary</Title></Column>
-          <Column><Title>times</Title></Column>
+          <VocabularyColumn><Title>vocabulary</Title></VocabularyColumn>
+          <TimesColumn><Title>times</Title></TimesColumn>
         </Row>
         <section>
           {frequency.map(item => this.renderItem(item))}
@@ -24,10 +24,10 @@ class Output extends React.Component {
 
   renderItem({ vocabulary, times }) {
     return (
-      <Row>
-        <Column>{vocabulary}</Column>
-        <Column>{times}</Column>
-      </Row>
+      <DataRow key={vocabulary}>
+        <VocabularyColumn>{vocabulary}</VocabularyColumn>
+        <TimesColumn>{times}</TimesColumn>
+      </DataRow>
     )
   }
 }
@@ -38,17 +38,33 @@ const Container = styled.section`
   flex: 1;
 `
 
-const Title = styled.h4`
+const Title = styled.h3`
   font-weight: bold;
   margin: 0;
 `
 
 const Row = styled.section`
-  display: flex;
   padding: 10px;
+  display: flex;
+  background-color: #009688;
+  color: white;
 `
 
-const Column = styled.section`
+const DataRow = Row.extend`
+  color: black;
+  &:nth-child(even) {
+    background-color: #B2DFDB
+  }
+  &:nth-child(odd) {
+    background-color: #E0F2F1
+  }
+`
+
+const VocabularyColumn = styled.section`
+  flex: 0 0 50%;
+`
+
+const TimesColumn = styled.section`
   flex: 0 0 50%;
 `
 
